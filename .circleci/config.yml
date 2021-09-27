@@ -6,7 +6,7 @@ jobs:
     - image: circleci/python:3.6   
     environment:
       - SENTRY_DSN: $SENTRY_DSN
-      - SECRET_KEY: $SECRET_KEY
+      - SECRET_KEY: "fgfgfgsss"
     steps:
       - checkout
       - restore_cache:
