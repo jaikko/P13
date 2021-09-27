@@ -3,7 +3,10 @@ version: 2.1
 jobs:
   test:
     docker:
-    - image: circleci/python:3.6
+    - image: circleci/python:3.6   
+environment:
+      - SENTRY_DSN: $SENTRY_DSN
+      - SECRET_KEY: $SECRET_KEY
     steps:
       - checkout
       - restore_cache:
