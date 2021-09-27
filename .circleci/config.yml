@@ -5,7 +5,7 @@ jobs:
     docker:
     - image: circleci/python:3.6   
     environment:
-      # - SENTRY_DSN: "test"
+      - SENTRY_DSN: "test"
       - SECRET_KEY: "test"
     steps:
       - checkout
