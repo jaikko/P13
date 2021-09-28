@@ -36,18 +36,17 @@ jobs:
       - image: circleci/python:3.6
     steps:
       - checkout
-      - run:
-          name: "Setting environment vars for test env"
-          command: |
-                    echo "export SENTRY_DSN=${SENTRY_DSN}" >> ${BASH_ENV}
-                    echo "export SECRET_KEY=${SECRET_KEY}" >> ${BASH_ENV}
+      # - run:
+      #     name: "Setting environment vars for test env"
+      #     command: |
+      #               echo "export SENTRY_DSN=${SENTRY_DSN}" >> ${BASH_ENV}
+      #               echo "export SECRET_KEY=${SECRET_KEY}" >> ${BASH_ENV}
       - setup_remote_docker
       - run:
           name: Build and push Docker image
           command: |
-            echo "$SENTRY_DSN"
             TAG=${CIRCLE_SHA1:0:10}
-            docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG .
+            docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG SENTRY_DSN .
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
             docker push ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG
   deploy:
