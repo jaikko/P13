@@ -38,14 +38,11 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: "Setting environment vars for docker"
-          command: |
-                    echo "export SENTRY_DSN=${SENTRY_DSN}" >> ${BASH_ENV}
-                    echo "export SECRET_KEY=${SECRET_KEY}" >> ${BASH_ENV}
-      - run:
           name: Build and push Docker image
           command: |
             TAG=${CIRCLE_SHA1:0:10}
+            echo "export SENTRY_DSN=${SENTRY_DSN}" >> ${BASH_ENV}
+            echo "export SECRET_KEY=${SECRET_KEY}" >> ${BASH_ENV}
             docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG .
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
             docker push ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG
