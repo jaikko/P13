@@ -3,9 +3,6 @@ version: 2.1
 jobs:
   test:
     docker:
-    # environment:
-    #   - SENTRY_DSN: ${SENTRY_DSN}
-    #   - SECRET_KEY: "test"
     - image: circleci/python:3.6
     steps:
       - checkout
@@ -31,16 +28,16 @@ jobs:
           command: |
             . venv/bin/activate
             pytest
+      - run:
+          name: Running flake8
+          command: |
+            . venv/bin/activate
+            flake8
   build_and_push:
     docker:
       - image: circleci/python:3.6
     steps:
       - checkout
-      # - run:
-      #     name: "Setting environment vars for test env"
-      #     command: |
-      #               echo "export SENTRY_DSN=${SENTRY_DSN}" >> ${BASH_ENV}
-      #               echo "export SECRET_KEY=${SECRET_KEY}" >> ${BASH_ENV}
       - setup_remote_docker
       - run:
           name: Build and push Docker image

@@ -9,7 +9,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-#Sentry
+# Sentry
 sentry_sdk.init(
     dsn=env('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
