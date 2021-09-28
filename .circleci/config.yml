@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            echo $SENTRY_DSN
+            echo "$SENTRY_DSN"
             TAG=${CIRCLE_SHA1:0:10}
             docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG .
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
