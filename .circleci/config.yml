@@ -28,11 +28,6 @@ jobs:
           command: |
             . venv/bin/activate
             pytest
-      - run:
-          name: Running flake8
-          command: |
-            . venv/bin/activate
-            flake8
   build_and_push:
     docker:
       - image: circleci/python:3.6
