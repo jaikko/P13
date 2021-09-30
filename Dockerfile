@@ -22,11 +22,12 @@ ENV PORT=8000
 # copy project
 COPY . .
 
-USER user
+RUN adduser -D myuser
+USER myuser
 
 # install dependencies
 RUN pip install --upgrade pip 
-RUN pip install -r requirements.txt
+RUN pip install --user -r requirements.txt
 
 EXPOSE 8000
 
