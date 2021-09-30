@@ -22,9 +22,6 @@ ENV PORT=8000
 # copy project
 COPY . .
 
-RUN adduser -D myuser
-USER myuser
-
 # install dependencies
 RUN pip install --upgrade pip 
 RUN pip install --user -r requirements.txt
