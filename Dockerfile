@@ -1,8 +1,6 @@
 # pull the official base image
 FROM python:3.8
 
-RUN pip install --upgrade pip 
-
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH=$VIRTUAL_ENV/bin:$PATH
@@ -27,6 +25,7 @@ ENV PORT=8000
 COPY . .
 
 # install dependencies
+RUN pip install --upgrade pip
 RUN pip install --user -r requirements.txt
 
 EXPOSE 8000
