@@ -39,7 +39,10 @@ jobs:
           command: |
             TAG=${CIRCLE_SHA1:0:10}
             SENTRY_DSN=${SENTRY_DSN}
-            docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG --build-arg SENTRY_DSN=${SENTRY_DSN} --build-arg SECRET_KEY=${SECRET_KEY} .
+            docker build -t ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG\
+            --build-arg SENTRY_DSN=${SENTRY_DSN}\
+            --build-arg SECRET_KEY=${SECRET_KEY}\
+            --build-arg ALLOWED_HOSTS=${ALLOWED_HOSTS} .
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
             docker push ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG
   deploy:
@@ -53,9 +56,9 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
-            docker pull jaykoo/${HEROKU_APP_NAME}:${CIRCLE_SHA1:0:10}
+            docker pull ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:${CIRCLE_SHA1:0:10}
             heroku container:login
-            docker tag jaykoo/${HEROKU_APP_NAME}:${CIRCLE_SHA1:0:10} registry.heroku.com/${HEROKU_APP_NAME}/web
+            docker tag ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:${CIRCLE_SHA1:0:10} registry.heroku.com/${HEROKU_APP_NAME}/web
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
             heroku container:release web -a ${HEROKU_APP_NAME}
             
