@@ -1,9 +1,6 @@
 # pull the official base image
 FROM python:3.8
 
-# set work directory
-# WORKDIR /final_project
-
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH=”$VIRTUAL_ENV/bin:$PATH”
@@ -20,7 +17,7 @@ ENV SENTRY_DSN=$SENTRY_DSN
 ENV SECRET_KEY=$SECRET_KEY
 ENV ALLOWED_HOSTS=$ALLOWED_HOSTS
 ENV DEBUG=$DEBUG
-ENV PORT=8000
+# ENV PORT=8000
 
 # copy project
 COPY . .
