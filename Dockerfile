@@ -1,7 +1,7 @@
 # pull the official base image
 FROM python:3.8
 
-RUN useradd -u user
+RUN useradd -u 1 user
 USER user
 
 ENV VIRTUAL_ENV=/opt/venv
