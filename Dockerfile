@@ -1,13 +1,12 @@
 # pull the official base image
 FROM python:3.8
 
-RUN adduser -D myuser
-USER myuser
-WORKDIR /home/myuser
+RUN useradd -u user
+USER user
 
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH=”/home/myuser/$VIRTUAL_ENV/bin:$PATH”
+ENV PATH=”$VIRTUAL_ENV/bin:$PATH”
 
 
 # set environment variables
@@ -28,7 +27,7 @@ COPY . .
 
 # install dependencies
 RUN pip install --upgrade pip 
-RUN pip install --user -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
