@@ -3,10 +3,10 @@ FROM python:3.8
 
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH=”$VIRTUAL_ENV/bin:$PATH”
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN useradd -m user
-USER user
+# RUN useradd -m user
+# USER user
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
