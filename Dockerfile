@@ -1,11 +1,9 @@
 # pull the official base image
 FROM python:3.8
 
-WORKDIR /myapp 
-
 ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH=”$VIRTUAL_ENV/bin:$PATH”
+ENV PATH=$VIRTUAL_ENV/bin:$PATH
 
 RUN useradd -m user
 USER user
