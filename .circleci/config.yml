@@ -45,7 +45,7 @@ jobs:
             --build-arg SENTRY_DSN=${SENTRY_DSN} \
             --build-arg SECRET_KEY=${SECRET_KEY} \
             --build-arg ALLOWED_HOSTS=${ALLOWED_HOSTS} \
-            --build-arg DEBUG=${DEBUG}\
+            --build-arg DEBUG=${DEBUG} \
             --nocache .
             echo $DOCKER_HUB_PASSWORD | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin
             docker push ${DOCKER_HUB_USERNAME}/${HEROKU_APP_NAME}:$TAG
