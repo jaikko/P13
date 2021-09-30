@@ -26,7 +26,7 @@ COPY . .
 
 # install dependencies
 RUN pip install --upgrade pip
-RUN pip install --user -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
