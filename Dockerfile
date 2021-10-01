@@ -26,5 +26,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 EXPOSE 8000
-RUN python3 manage.py collectstatic --no-input
 CMD python3 manage.py runserver 0.0.0.0:$PORT
