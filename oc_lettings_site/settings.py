@@ -147,8 +147,8 @@ STATIC_URL =  '/static/'
 #     os.path.join(BASE_DIR, '/static/'),
 # )
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
-COMPRESS_ENABLED = False
+# DEBUG_PROPAGATE_EXCEPTIONS = True
+# COMPRESS_ENABLED = False
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
