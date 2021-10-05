@@ -2,4 +2,4 @@
 *.pyc
 venv
 .env
-.sqlite3.exe
+sqlite3.exe
