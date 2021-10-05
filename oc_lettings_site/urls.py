@@ -16,4 +16,4 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('admin/', admin.site.urls),
     path('sentry-debug/', trigger_error),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

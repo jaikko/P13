@@ -36,7 +36,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build and push Docker image
+          name: Build and push Docker image to Docker Hub
           command: |
             TAG=${CIRCLE_SHA1:0:10}
             SENTRY_DSN=${SENTRY_DSN}
@@ -72,22 +72,12 @@ workflows:
       - build_and_push:
           requires:
             - test
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build_and_push
-
-          # filters:
-          #   branches:
-          #     only: master
-      # - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-      #     requires:
-      #       - build_and_push
-          # filters:
-          #   branches:
-          #     only: master
-      # - deploy:
-      #     requires:
-      #       - build_and_push
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
